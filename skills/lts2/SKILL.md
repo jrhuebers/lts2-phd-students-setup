@@ -28,12 +28,11 @@ actual performance and software compatibility depend on the workload.
 
 | GPU (best first) | VRAM per GPU | Slurm GRES type | Cluster inventory |
 | --- | --- | --- | --- |
-| RTX PRO 5000 | Installed variant unverified (48 or 72 GB models) | `rtx_pro_5000` | 3 GPUs; one each on `lts2cdk6`, `lts2cdk7`, `lts2cdk8` |
+| RTX PRO 5000 | 48 GB | `rtx_pro_5000` | 3 GPUs; one each on `lts2cdk6`, `lts2cdk7`, `lts2cdk8` |
 | TITAN RTX | 24 GB | `titanrtx` | 4 GPUs; three on `lts2srv4`, one on `lts2cdk9` |
 | GTX 1080 | 8 GB | `gtx1080` | 4 GPUs on `lts2gdk0`; older GPU, check framework support |
 
-VRAM figures are manufacturer specifications; verify the installed RTX PRO 5000
-variant with `nvidia-smi --query-gpu=name,memory.total --format=csv` inside an allocation.
+VRAM is per GPU, not host RAM; the lab's RTX PRO 5000 cards are the 48 GB variant.
 
 GPU jobs: `--partition=gpu --qos=staff --gres=gpu:TYPE:COUNT`, maximum 3 days.
 CPU-only jobs: `--partition=cpu --qos=cpu`, maximum 4 days; main node `lts2srv5`
