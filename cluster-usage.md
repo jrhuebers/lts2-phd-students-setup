@@ -37,11 +37,11 @@ First log in with `ssh lts2`. On the cluster, use `squeue --me` to find one of
 **your own running jobs**, then replace `JOBID` below with its job ID:
 
 ```sh
-srun --jobid=JOBID --overlap --nodes=1 --ntasks=1 --cpus-per-task=1 --pty bash -l
+srun --jobid=JOBID --overlap --pty bash -l
 ```
 
-This starts an additional shell on one compute node in the existing allocation;
-it does not request a new job or attach to the training process itself.
+For a single-node, single-task job, this starts an additional shell in the existing
+allocation; it does not request a new job or attach to the training process itself.
 `--overlap` lets this step share resources with the running training step,
 rather than waiting for those resources to be released.
 
@@ -53,7 +53,7 @@ own environment activation—it isn't automatically the training process's envir
 For a one-off GPU check, you can also run this directly from your MacBook:
 
 ```sh
-ssh lts2 'srun --jobid=JOBID --overlap --nodes=1 --ntasks=1 --cpus-per-task=1 nvidia-smi'
+ssh lts2 'srun --jobid=JOBID --overlap nvidia-smi'
 ```
 
 These commands use resources already allocated to the job, so keep inspection
