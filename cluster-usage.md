@@ -23,7 +23,6 @@ Useful variations, all run from your MacBook:
 
 ```sh
 ssh lts2 'squeue --me --states=RUNNING'  # only running jobs
-ssh lts2 'squeue --me --iterate=30'     # refresh every 30 seconds; Ctrl-C to stop
 ssh lts2 'sacct -S today --format=JobID,JobName,State,Elapsed,ExitCode'
 ```
 
