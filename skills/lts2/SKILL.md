@@ -26,11 +26,14 @@ Snapshot: 2026-10-20, from live `sinfo`, `scontrol`, and `sacctmgr`.
 For typical deep learning, prefer **RTX PRO 5000 > TITAN RTX > GTX 1080**;
 actual performance and software compatibility depend on the workload.
 
-| GPU (best first) | Slurm GRES type | Cluster inventory |
-| --- | --- | --- |
-| RTX PRO 5000 | `rtx_pro_5000` | 3 GPUs; one each on `lts2cdk6`, `lts2cdk7`, `lts2cdk8` |
-| TITAN RTX | `titanrtx` | 4 GPUs; three on `lts2srv4`, one on `lts2cdk9` |
-| GTX 1080 | `gtx1080` | 4 GPUs on `lts2gdk0`; older GPU, check framework support |
+| GPU (best first) | VRAM per GPU | Slurm GRES type | Cluster inventory |
+| --- | --- | --- | --- |
+| RTX PRO 5000 | Installed variant unverified (48 or 72 GB models) | `rtx_pro_5000` | 3 GPUs; one each on `lts2cdk6`, `lts2cdk7`, `lts2cdk8` |
+| TITAN RTX | 24 GB | `titanrtx` | 4 GPUs; three on `lts2srv4`, one on `lts2cdk9` |
+| GTX 1080 | 8 GB | `gtx1080` | 4 GPUs on `lts2gdk0`; older GPU, check framework support |
+
+VRAM figures are manufacturer specifications; verify the installed RTX PRO 5000
+variant with `nvidia-smi --query-gpu=name,memory.total --format=csv` inside an allocation.
 
 GPU jobs: `--partition=gpu --qos=staff --gres=gpu:TYPE:COUNT`, maximum 3 days.
 CPU-only jobs: `--partition=cpu --qos=cpu`, maximum 4 days; main node `lts2srv5`
