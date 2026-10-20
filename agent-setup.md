@@ -82,8 +82,8 @@ without permission, or overwrite work.
 Start the agent in your research project on your MacBook. Invoke `lts2` using the
 syntax above, then give it a concrete task, for example:
 
-> Use the lts2 skill to run `train.py` on the cluster with one GPU, using this
-> project's default config. Tell me when it's running and where the outputs are saved.
+> Run `train.py` on LTS2 with one GPU, using this project's default config.
+> Tell me when it's running and where the outputs are saved.
 
 Replace `train.py` with your project's training entry point and specify the
 experiment/config you want. The skill handles the cluster mechanics; your prompt
