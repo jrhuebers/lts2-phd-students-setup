@@ -82,13 +82,12 @@ without permission, or overwrite work.
 Start the agent in your research project on your MacBook. Invoke `lts2` using the
 syntax above, then give it a concrete task, for example:
 
-> Use the lts2 skill. Verify my required changes are pushed and update the cluster
-> clone to that commit; stop and tell me if anything blocks this. Check my existing
-> allocations and available GPUs. Prepare a one-GPU job for `train.py` with
-> 4 CPUs, 16 GiB RAM, and the maximum permitted wall-time (3 days for GPU/staff).
-> Show me the remote project path, environment setup,
-> and batch script before submitting. After I approve, submit it and report the
-> job ID and log location.
+> Use the lts2 skill to run `train.py` on the cluster with one GPU, using this
+> project's default config. Tell me when it's running and where the outputs are saved.
+
+Replace `train.py` with your project's training entry point and specify the
+experiment/config you want. The skill handles the cluster mechanics; your prompt
+should describe the work you want done.
 
 Prefer a short smoke test before a long training run. Use Slurm for computation;
 don't train on the login node. **At most two GPUs per user at a time**, including
