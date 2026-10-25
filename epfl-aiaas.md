@@ -65,32 +65,3 @@ codex --model zai-org/GLM-5.3-Flash
 Codex requires the Responses API, not just Chat Completions. EPFL's API schema
 advertises `/v1/responses`; these settings have not been tested end-to-end with
 the models above. See the [Codex configuration reference](https://developers.openai.com/codex/config-reference/).
-
-## Claude Code
-
-With [Claude Code](https://code.claude.com/docs/en/setup) installed, run the following
-in the terminal where you set the key:
-
-```sh
-export ANTHROPIC_BASE_URL="https://inference.rcp.epfl.ch"
-export ANTHROPIC_AUTH_TOKEN="$EPFL_AIAAS_API_KEY"
-export ANTHROPIC_DEFAULT_OPUS_MODEL="deepseek-ai/DeepSeek-V4.1-Flash-1017"
-export ANTHROPIC_DEFAULT_SONNET_MODEL="$ANTHROPIC_DEFAULT_OPUS_MODEL"
-export ANTHROPIC_DEFAULT_HAIKU_MODEL="$ANTHROPIC_DEFAULT_OPUS_MODEL"
-export MAX_THINKING_TOKENS=0
-claude --model sonnet
-```
-
-The model mappings route Claude Code's tiers to the selected EPFL model, not to
-Anthropic's models. Change the model in `ANTHROPIC_DEFAULT_OPUS_MODEL` before
-running the block to use another model listed above. The base URL here has **no
-`/v1` suffix**. RCP's instructions require **Thinking mode to be disabled**;
-`MAX_THINKING_TOKENS=0` disables Claude Code's extended-thinking request, not
-necessarily the backend model's internal reasoning.
-
-Run `/status` to check that the base URL and model are correct, then try a short
-prompt. These exports apply to this terminal session; the specific models above
-have not been tested end-to-end here with Claude Code.
-
-References: RCP's [compatible tools guide](https://wiki.rcp.epfl.ch/home/AIaaS/compatible-tools#claude-code)
-(EPFL network/VPN required) and [Claude Code gateway setup](https://code.claude.com/docs/en/llm-gateway-connect).
