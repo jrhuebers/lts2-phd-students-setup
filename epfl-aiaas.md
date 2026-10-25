@@ -12,7 +12,8 @@ While connected to the **EPFL network or VPN**, open the
 4. Set **Usage** to **Personal**.
 5. Click **Request**. Your Basic key should be created instantly.
 6. Reveal the new key's **Secret** and copy it for use in your coding agent.
-   It should look like `sk-...`. Keep the actual secret out of Git and shared docs.
+   Example (non-working key): `sk-DihKfn2ReQfQFMHykE_e_g`.
+   Keep the actual secret out of Git and shared docs.
 
 ## 2. Available models
 
