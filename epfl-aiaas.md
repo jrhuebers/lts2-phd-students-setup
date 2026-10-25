@@ -28,7 +28,7 @@ better than the DeepSeek model.
 
 ## 3. Save your API key in your shell configuration
 
-The examples below use EPFL's **external API endpoint**, which is accessible
+EPFL's **external API endpoint**, `https://inference-rcp.epfl.ch/v1`, is accessible
 without the EPFL network/VPN. Creating or managing your key through the portal
 still requires the EPFL network/VPN.
 
@@ -60,36 +60,4 @@ login shell, ensure `~/.bash_profile` sources `~/.bashrc`.
 **The key is stored in plaintext.** Keep the file private and don't put the secret
 in shared or version-controlled dotfiles.
 
-## OpenAI Codex
-
-With [Codex CLI](https://developers.openai.com/codex/cli/) installed, add or merge
-this into `~/.codex/config.toml`. Preserve existing settings; top-level keys such
-as `model` and `model_provider` go before any `[table]` headers.
-
-```toml
-model = "deepseek-ai/DeepSeek-V4.1-Flash-1017"
-model_provider = "epfl"
-
-[model_providers.epfl]
-name = "EPFL AIaaS"
-base_url = "https://inference-rcp.epfl.ch/v1"
-env_key = "EPFL_AIAAS_API_KEY"
-wire_api = "responses"
-```
-
-Start `codex` from a terminal that has loaded your shell configuration. To try
-the other Basic model:
-
-```sh
-codex --model zai-org/GLM-5.3-Flash
-```
-
-Codex requires the Responses API, not just Chat Completions. EPFL's internal API
-schema advertises `/v1/responses`, but the **external endpoint filters API routes
-and HTTP methods**. Codex compatibility through the external endpoint and with
-the models above has not been tested end-to-end. If the external endpoint rejects
-the required route/method, connect to the EPFL network/VPN and change `base_url`
-to `https://inference.rcp.epfl.ch/v1`.
-
-References: [RCP endpoint documentation](https://wiki.rcp.epfl.ch/home/AIaaS/Technical)
-and [Codex configuration reference](https://developers.openai.com/codex/config-reference/).
+Endpoint details: [RCP technical documentation](https://wiki.rcp.epfl.ch/home/AIaaS/Technical).
