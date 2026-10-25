@@ -14,7 +14,7 @@ While connected to the **EPFL network or VPN**, open the
 6. Reveal the new key's **Secret** and copy it for use in your coding agent.
    It should look like `sk-...`. Keep the actual secret out of Git and shared docs.
 
-## 2. Choose a model
+## 2. Available models
 
 Recommended models available with a **Basic** key, last checked **25 October 2026**:
 
