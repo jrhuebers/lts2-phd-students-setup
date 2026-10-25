@@ -26,21 +26,39 @@ Recommended models available with a **Basic** key, last checked **25 October 202
 With a **Premium** key, you can also use `zai-org/GLM-5.3`, which might be even
 better than the DeepSeek model.
 
-## 3. Set your key for this terminal
+## 3. Save your API key in your shell configuration
 
 The examples below use EPFL's **external API endpoint**, which is accessible
 without the EPFL network/VPN. Creating or managing your key through the portal
 still requires the EPFL network/VPN.
 
-In macOS's default shell, **zsh**, run this and paste your key at the prompt:
+On macOS, the default shell is **zsh**. Open `~/.zshrc` using an editor like `nano`:
 
 ```sh
-read -rs 'EPFL_AIAAS_API_KEY?EPFL AIaaS API key: '; echo
-export EPFL_AIAAS_API_KEY
+nano ~/.zshrc
 ```
 
-This keeps the key out of the command itself and shell history. It is available
-to agents launched from this terminal; repeat in a new terminal when needed.
+Add this line, replacing the placeholder with your API key, then save the file:
+
+```sh
+export EPFL_AIAAS_API_KEY='YOUR_API_KEY'
+```
+
+Reload the file in your current terminal:
+
+```sh
+source ~/.zshrc
+```
+
+New terminal sessions will load the key automatically, making it available to
+agents launched from them. Enter the secret in the editor, not as a terminal
+command, to keep it out of shell history.
+
+**Bash users:** use `~/.bashrc` and `source ~/.bashrc` instead. If you use a Bash
+login shell, ensure `~/.bash_profile` sources `~/.bashrc`.
+
+**The key is stored in plaintext.** Keep the file private and don't put the secret
+in shared or version-controlled dotfiles.
 
 ## OpenAI Codex
 
@@ -59,7 +77,8 @@ env_key = "EPFL_AIAAS_API_KEY"
 wire_api = "responses"
 ```
 
-Start `codex` from the terminal where you set the key. To try the other Basic model:
+Start `codex` from a terminal that has loaded your shell configuration. To try
+the other Basic model:
 
 ```sh
 codex --model zai-org/GLM-5.3-Flash
