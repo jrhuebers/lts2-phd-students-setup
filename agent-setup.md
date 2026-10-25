@@ -6,10 +6,11 @@ on allocated cluster resources, not on your laptop or the login node.
 
 ## 1. Install an agent and the lts2 skill
 
-Install a local coding agent of your choice using its official documentation
-linked below, and sign in with an account approved for your work. You need an
-agent with terminal/SSH access; a browser-only chat cannot use your MacBook's
-SSH configuration.
+We recommend **OpenCode**: follow the [CLI, desktop app, VS Code extension, and
+EPFL provider setup](epfl-aiaas.md) first. Other local coding agents also work;
+use their official documentation linked below and an account approved for your
+work. You need an agent with terminal/SSH access; a browser-only chat cannot use
+your MacBook's SSH configuration.
 
 The skill uses the portable [Agent Skills format](https://agentskills.io/specification):
 a directory named `lts2` containing `SKILL.md`. Review the file before installing.
@@ -19,15 +20,16 @@ your agent's **user-level skill directory**:
 
 | Agent | Skill directory | Explicit use in chat |
 | --- | --- | --- |
+| [OpenCode](https://opencode.ai/v2/docs/skills) | `~/.config/opencode/skills` | `@lts2` |
 | [Claude Code](https://code.claude.com/docs/en/skills) | `~/.claude/skills` | `/lts2` |
 | [Codex CLI / IDE](https://developers.openai.com/codex/skills/) | `~/.agents/skills` | `$lts2` (or select via `/skills`) |
 | [Cursor](https://cursor.com/docs/context/skills) | `~/.cursor/skills` | Type `/` and select `lts2` |
 | [Pi](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/skills.md) | `~/.pi/agent/skills` | `/skill:lts2` |
 
-For example, for Claude Code (change the first line for your agent):
+For OpenCode (change the first line if you use another agent):
 
 ```sh
-skill_dir="$HOME/.claude/skills"
+skill_dir="$HOME/.config/opencode/skills"
 mkdir -p "$skill_dir"
 # Stop if lts2 already exists, so you don't overwrite a customized skill.
 if [ -e "$skill_dir/lts2" ] || [ -L "$skill_dir/lts2" ]; then
