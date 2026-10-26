@@ -2,7 +2,7 @@
 
 Technical setup and usage instructions for PhD students in EPFL's LTS2 lab.
 
-## Remote research jobs
+## Using the lab cluster
 
 Use a local coding agent on your MacBook to submit research jobs to the lab's
 Slurm cluster (not RCP Run:AI or SCITAS). Go through these files in order:
