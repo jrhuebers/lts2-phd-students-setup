@@ -125,22 +125,25 @@ file. OpenCode saves the provider account locally for its server; the local CLI
 and desktop app can use it without relying on `~/.zshrc` exports. Keep OpenCode's
 credential storage private and out of Git.
 
-Open your research project in OpenCode. In the terminal interface, run `/models`
-and select **DeepSeek V4.1 Flash (EPFL Basic)**, or choose it in the desktop model
-picker. Its full model reference is
-`epfl/deepseek-ai/DeepSeek-V4.1-Flash-1017`.
+Open your research project in OpenCode and open the **model picker** (`/models`
+in the terminal interface).
+
+1. Toggle **EPFL AIaaS** **on** to activate the provider.
+2. Toggle the **OpenCode** provider **off**.
+3. Select **DeepSeek V4.1 Flash (EPFL Basic)**.
+
+Its full model reference is `epfl/deepseek-ai/DeepSeek-V4.1-Flash-1017`.
 
 This adds a separate **EPFL AIaaS** provider. It does **not** replace your OpenAI
 or Anthropic endpoints or credentials. Connect those providers separately if you
 want them too, and use the model picker to switch. No OpenCode subscription is
 required to use your EPFL key.
 
-**Not yet tested end-to-end with EPFL:** this configuration follows OpenCode 2's
-custom-provider documentation, but model availability and tool-calling behavior
-still need a live check. Start with a small request, such as asking OpenCode to
-read your project's `README.md` and summarize it, before relying on it for
-cluster work. If authentication, model selection, or tool calls fail, stop and
-check the key's pool, exact model ID, and endpoint rather than submitting jobs.
+**This setup has been confirmed working on macOS with OpenCode 2.1.4.** Start
+with a small tool-use check, such as asking OpenCode to read your project's
+`README.md` and summarize it, before relying on it for cluster work. If
+authentication, model selection, or tool calls fail, stop and check the key's
+pool, exact model ID, and endpoint rather than submitting jobs.
 
 References: [OpenCode providers](https://opencode.ai/v2/docs/providers),
 [provider accounts](https://opencode.ai/v2/docs/cli/providers), and
