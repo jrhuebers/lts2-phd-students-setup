@@ -1,11 +1,11 @@
-# LTS2 remote research setup
+# Technical guides for LTS2 PhD students
 
-For LTS2 PhD students at EPFL: use a local coding agent on your MacBook to submit
-research jobs to the lab's Slurm cluster (not RCP Run:AI or SCITAS).
+Technical setup and usage instructions for PhD students in EPFL's LTS2 lab.
 
 ## Remote research jobs
 
-Go through these files in order:
+Use a local coding agent on your MacBook to submit research jobs to the lab's
+Slurm cluster (not RCP Run:AI or SCITAS). Go through these files in order:
 
 1. **[SSH setup](ssh-setup.md)** — configure cluster access and test `ssh lts2`.
 2. **[Agent setup](agent-setup.md)** — install the `lts2` skill, prepare your
