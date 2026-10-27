@@ -1,4 +1,4 @@
-# Set up SSH access to LTS2 from a MacBook
+# Set up SSH access to the LTS2 lab cluster from a MacBook
 
 You need an enabled LTS2 cluster account and access to the EPFL network (on campus,
 or through the EPFL VPN off campus). Ask the lab administrator if your account
