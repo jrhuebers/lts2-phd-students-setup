@@ -56,7 +56,7 @@ has 40 Slurm CPUs and about 125 GiB RAM (node capacity, not user allowance).
   ask before changing code they may still read.
   No public repository, GitHub access, or commit/push/pull is required.
 - Preview the transfer with `rsync --dry-run`. Exclude `.git`, secrets (including `.env`
-  files), laptop virtualenvs, caches, datasets, and outputs; don't use `--delete`.
+  files), laptop virtualenvs, caches, datasets, and outputs (ideally do this using the `.rsync-filter` file); don't use `--delete`.
   Verify the transfer succeeded and required files are present before submitting.
   Stop and explain transfer errors or missing prerequisites; don't run stale code.
 - Record the verified absolute remote project directory and SSH alias `lts2` in the
