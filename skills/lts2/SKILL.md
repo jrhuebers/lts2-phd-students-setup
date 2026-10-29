@@ -50,24 +50,21 @@ has 40 Slurm CPUs and about 125 GiB RAM (node capacity, not user allowance).
   `--time=4-00:00:00` for CPU/cpu).
   Recheck availability with `ssh lts2 'sinfo -N -o "%N %P %c %m %G %t"'`.
   Account/QoS permissions may differ; inspect the user's association if submission is rejected.
-- Expect public research repositories. Verify visibility and warn the user if the repo
-  is private or visibility cannot be confirmed; never change visibility automatically.
-  Use public HTTPS URLs for cluster clones/pulls so no GitHub credentials are needed there.
-- Before submitting, verify that the required laptop changes are committed and pushed
-  to the intended remote branch. Fetch/check both clones; in the cluster clone, verify
-  the remote/branch and a clean working tree before updating with `git pull --ff-only`.
-  Confirm the checkout matches the intended pushed commit. If needed changes are
-  uncommitted/unpushed, access fails, history diverges, or another prerequisite is missing,
-  stop and tell the user what needs fixing; don't submit stale code, auto-push research
-  changes, or reset work.
-- Record the verified cluster clone's absolute path and SSH alias `lts2` in the research
-  repo's root `AGENTS.md` (create it if absent, preserve existing instructions).
-  Commit and push this documentation update from the laptop to the intended branch,
-  without including unrelated changes/commits; then fast-forward the cluster clone again.
-  If the path is already correct, don't create a redundant commit. Report any push blocker.
-- Use the updated cluster clone and a cluster-side environment; transfer data separately
-  as needed, then submit there: `ssh lts2 'cd ~/PROJECT && sbatch job.sbatch'`.
+- Treat the laptop working tree as the source of truth. Use `rsync` over SSH to `lts2`
+  to copy current code/configs, including uncommitted changes, into a fresh remote
+  directory per submission; never overwrite code used by queued or running jobs.
+  No public repository, GitHub access, or commit/push/pull is required.
+- Preview the transfer with `rsync --dry-run`. Exclude `.git`, secrets (including `.env`
+  files), laptop virtualenvs, caches, datasets, and outputs; don't use `--delete`.
+  Verify the transfer succeeded and required files are present before submitting.
+  Stop and explain transfer errors or missing prerequisites; don't run stale code.
+- Record the verified absolute remote project directory and SSH alias `lts2` in the
+  local project's root `AGENTS.md`, preserving existing instructions. Sync this file
+  too; don't automatically commit or push it.
+- Use the synced run directory and a cluster-side environment outside it; keep datasets
+  and outputs separate from code transfers. Submit with
+  `ssh lts2 'cd ~/PROJECT/runs/RUN_ID && sbatch job.sbatch'`.
   A typical single-GPU script requests `--nodes=1 --ntasks=1 --cpus-per-task=4 --mem=16G
   --time=3-00:00:00 --partition=gpu --qos=staff --gres=gpu:rtx_pro_5000:1` and runs
-  `srun .venv/bin/python train.py` (adapt paths/environment to the project).
+  `srun /ABSOLUTE/PATH/TO/ENV/bin/python train.py` (adapt paths/environment to the project).
   Capture the job ID and remote log path; submission success does not mean the job has started.
