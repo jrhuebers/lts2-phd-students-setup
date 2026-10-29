@@ -51,8 +51,9 @@ has 40 Slurm CPUs and about 125 GiB RAM (node capacity, not user allowance).
   Recheck availability with `ssh lts2 'sinfo -N -o "%N %P %c %m %G %t"'`.
   Account/QoS permissions may differ; inspect the user's association if submission is rejected.
 - Treat the laptop working tree as the source of truth. Use `rsync` over SSH to `lts2`
-  to copy current code/configs, including uncommitted changes, into a fresh remote
-  directory per submission; never overwrite code used by queued or running jobs.
+  to copy current code/configs, including uncommitted changes, into one persistent
+  remote project directory. Before syncing, check for queued/running jobs using it;
+  ask before changing code they may still read.
   No public repository, GitHub access, or commit/push/pull is required.
 - Preview the transfer with `rsync --dry-run`. Exclude `.git`, secrets (including `.env`
   files), laptop virtualenvs, caches, datasets, and outputs; don't use `--delete`.
@@ -61,9 +62,9 @@ has 40 Slurm CPUs and about 125 GiB RAM (node capacity, not user allowance).
 - Record the verified absolute remote project directory and SSH alias `lts2` in the
   local project's root `AGENTS.md`, preserving existing instructions. Sync this file
   too; don't automatically commit or push it.
-- Use the synced run directory and a cluster-side environment outside it; keep datasets
-  and outputs separate from code transfers. Submit with
-  `ssh lts2 'cd ~/PROJECT/runs/RUN_ID && sbatch job.sbatch'`.
+- Use the synced project directory and a cluster-side environment; preserve datasets,
+  environments, and outputs during code transfers. Submit with
+  `ssh lts2 'cd ~/PROJECT && sbatch job.sbatch'`.
   A typical single-GPU script requests `--nodes=1 --ntasks=1 --cpus-per-task=4 --mem=16G
   --time=3-00:00:00 --partition=gpu --qos=staff --gres=gpu:rtx_pro_5000:1` and runs
   `srun /ABSOLUTE/PATH/TO/ENV/bin/python train.py` (adapt paths/environment to the project).
