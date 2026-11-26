@@ -7,15 +7,13 @@ on allocated cluster resources, not on your laptop or the login node.
 ## 1. Install an agent and the lts2 skill
 
 Use a local coding agent such as **Claude Code** or **Codex**, installed using
-its official documentation below, and an account approved for your work. You need
-an agent with terminal/SSH access; a browser-only chat cannot use your MacBook's
-SSH configuration.
+its official documentation below.
 
 To use EPFL-hosted models, see [OpenCode and EPFL models](epfl-aiaas.md).
 This is optional and independent of cluster access.
 
 The skill uses the portable [Agent Skills format](https://agentskills.io/specification):
-a directory named `lts2` containing `SKILL.md`. Review the file before installing.
+a directory named `lts2` containing `SKILL.md`.
 
 Download or clone this setup repository, open a terminal in its root, and choose
 your agent's **user-level skill directory**:
@@ -42,9 +40,10 @@ else
 fi
 ```
 
-Restart the agent or reload skills (Pi: `/reload`), then check that `lts2` is
-listed. Installed copies do not update automatically; compare and copy again
-when this repository changes. No agent or skill installation on the cluster is needed.
+Restart the agent, then check that `/lts2` (Claude Code), `$lts2` (Codex),
+`@lts2` (OpenCode), or `/skill:lts2` (Pi) loads the skill file.
+Installed copies do not update automatically; compare and copy again when this
+repository changes. No agent or skill installation on the cluster is needed.
 
 **Other agents:** use their documented skill location and copy the same `lts2`
 directory there. If yours has no skill support, attach
