@@ -53,33 +53,13 @@ or invocation syntax.
 
 ## 2. Prepare your research project
 
-Your research repository is separate from this setup repository. Your primary
-checkout can stay on your MacBook. Tell the agent:
+Open your research project on your MacBook. Tell the agent where to keep it on
+the cluster, where the data and outputs belong, and how to install its dependencies.
 
-- The **public** research repo's HTTPS URL, intended branch, and user-owned cluster
-  directory. Clone it there if needed; public HTTPS clones/pulls need no GitHub
-  credentials on the cluster. The agent checks repository visibility and warns you
-  if it is private or visibility cannot be confirmed. It must not make a repository
-  public automatically—review its contents and history before publishing.
-  Never copy your laptop's private key to the cluster.
-- Where the data and outputs belong, and what needs backing up. Use `scp`/`rsync`
-  for data not tracked in Git; don't assume scratch storage is backed up.
-- How to install dependencies in a **cluster-side** environment. Don't copy a
-  MacBook virtualenv to Linux; match the framework/CUDA build to the chosen GPU.
-
-The agent records the verified cluster clone's absolute path and the `lts2` SSH
-alias in your research repo's root `AGENTS.md`, preserving existing instructions.
-It commits and pushes that documentation update from your MacBook to the intended
-branch, then updates the cluster clone again. It skips an already-correct entry
-and reports any blocker rather than including unrelated changes or commits.
-
-**Commit and push the changes needed for the job before submission.** The agent
-checks that they are available on the intended remote branch, updates the clean
-cluster clone with `git pull --ff-only`, and verifies the intended commit before
-running `sbatch` through `ssh lts2`. If changes aren't pushed, the cluster checkout
-has local work, histories diverge, Git access fails, or another prerequisite is
-missing, it should stop and explain the blocker—not silently run old code, push
-without permission, or overwrite work.
+The agent syncs code using **rsync over SSH**, sets up a cluster-side environment,
+and records the remote project path in `AGENTS.md`. Uncommitted changes can be
+synced; secrets, laptop environments, datasets, and outputs are excluded from
+routine code transfers.
 
 ## 3. Ask for a first job
 
